@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,500;0,6..12,700;1,6..12,400;1,6..12,500;1,6..12,700&display=swap');
+
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    background-color: #fff;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.brand-lockup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: fit-content;
+    margin-inline: auto;
+    color: #171914;
+    text-decoration: none;
+}
+
+.brand-lockup:hover {
+    text-decoration: none;
+}
+
+.brand-mark {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    aspect-ratio: 1;
+    border-radius: 0.55rem;
+    background: #171914;
+    color: #fff;
+    font-family: Georgia, serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.brand-copy {
+    display: grid;
+    gap: 0.05rem;
+    text-align: left;
+}
+
+.brand-name {
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.brand-tagline {
+    color: #6b7066;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.btn {
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.btn i {
+    vertical-align: text-top;
+}
+
+.btn-outline-custom {
+    border-color: #ddd;
+    color: #31374a;
+}
+
+.btn-outline-custom:hover {
+    border-color: #ddd;
+    color: #31374a;
+    background-color: #eee;
+}
+
+.bg-holder {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.divider-content-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background-color: #fff;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #999;
+}
+
+.divider {
+    margin: 2rem 0;
+}
