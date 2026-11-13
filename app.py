@@ -172,6 +172,15 @@ def dashboard():
 
     return render_template('dashboard.html', user=user)
 
+@app.route('/logout', methods=['POST'])
+def logout():
+
+    session.clear()
+
+    flash('You have been logged out.', 'success')
+
+    return redirect(url_for('login'))
+
 # Create database tables
 with app.app_context():
     db.create_all()
