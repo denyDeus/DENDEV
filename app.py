@@ -1,9 +1,9 @@
 
 import os
 from datetime import datetime, timezone
-from flask import (Flask, render_template, request, redirect, url_for, flash)
+from flask import (Flask, render_template, request, redirect, url_for, flash, session)
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.security import generate_password_hash
+from werkzeug.security import (generate_password_hash, check_password_hash)
 from sqlalchemy.exc import IntegrityError
 
 
@@ -135,10 +135,42 @@ def register():
     return redirect(url_for('login'))
 
 # Login page
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
 
+    if request.method == 'GET':
+        return render_template('login.html')
+
+    username = request.form.get('username', '').strip()
+    password = request.form.get('password', '')
+
+    user = User.query.filter_by(username=username).first()
+
+    if user is None or not check_password_hash(
+        user.password_hash, password
+    ):
+        flash('Invalid username or password.', 'danger')
+        return redirect(url_for('login'))
+
+    session.clear()
+    session['user_id'] = user.id
+
+    return redirect(url_for('dashboard'))
+
+@app.route('/dashboard')
+def dashboard():
+
+    if 'user_id' not in session:
+        flash('Please log in to access the dashboard.', 'warning')
+        return redirect(url_for('login'))
+
+    user = db.session.get(User, session['user_id'])
+
+    if user is None:
+        session.clear()
+        return redirect(url_for('login'))
+
+    return render_template('dashboard.html', user=user)
 
 # Create database tables
 with app.app_context():
